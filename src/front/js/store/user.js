@@ -26,6 +26,7 @@ export function userActions(getStore, getActions, setStore) {
             localStorage.setItem("token", responseJson.token)
             sessionStorage.setItem("token", responseJson.token)
             setStore({ ...store, token: responseJson.token })
+            setStore({ ...store, email: responseJson.email })
             return response
         }
     }

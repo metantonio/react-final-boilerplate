@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
   const history = useNavigate();
-
+  const [token, setToken] = useState("");
   const registrar = async (e) => {
     e.preventDefault();
     console.log("Entramos en la función de registrar");
@@ -32,14 +33,32 @@ export const Login = () => {
  */
 
     let response = await actions.login("/login", obj, "POST"); //response es una promesa
-    /* if (response.ok) {
-      
+    console.log("36: ", response);
+    if (response.status == 200) {
+      //let respuestaJson = await response.json();
+      //console.log("41: ", respuestaJson);
+      Swal.fire({
+        icon: "success",
+        title: "Welcome",
+        text: `Bienvenido, ${store.email}`,
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
     } else {
-      
-    } */
-    response = await response.json(); //response es un objeto de Javascript
-    console.log(response);
-    alert(response.token);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No pudo iniciar sesión",
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
+    }
+    //console.log(response);
+    //response = await response.json(); //response es un objeto de Javascript
+    console.table(response);
+    //token = response.token;
+    setToken(response.token);
+    console.log("token", token);
+
+    //alert(response.token);
   };
 
   const prueba = async () => {
@@ -48,8 +67,8 @@ export const Login = () => {
     let responseJSON = await response.json();
 
     if (response.ok) {
-      console.log("entré en el if");
-      return history("/demo");
+      console.log(responseJSON);
+      return history("/listaUsuarios");
     }
   };
 
@@ -96,14 +115,14 @@ export const Login = () => {
           </div>
         </form>
         <Link to="/">Ir a Home</Link>
-        {store.token ? (
+        {store.email ? (
           <button type="button" onClick={() => prueba()}>
             Endpoint protegida
           </button>
         ) : (
-          <></>
+          <h1>No ha iniciado sesión</h1>
         )}
-        {store.token ? (
+        {store.email ? (
           <button
             type="button"
             onClick={() => {

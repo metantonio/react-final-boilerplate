@@ -7,6 +7,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { SignUp } from "./pages/signup.jsx"; //Este es el componente de la página para registrar usuario
 import { Login } from "./pages/login.jsx";
+import { ListaUsuarios } from "./pages/listaUsuarios.jsx";
 
 import injectContext from "./store/appContext";
 
@@ -30,6 +31,7 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<SignUp />} path="/register" />
                         <Route element={<Login />} path="/login" />
+                        <Route element={<ListaUsuarios />} path="/listaUsuarios" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
