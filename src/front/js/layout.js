@@ -15,6 +15,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
 import { SubirCloudinary } from "./pages/subircloud";
+import { VistaImagenes } from "./pages/imagens.jsx";
 
 //create your first component
 const Layout = () => {
@@ -35,6 +36,7 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<ListaUsuarios />} path="/listaUsuarios" />
                         <Route element={<SubirCloudinary />} path="/subir" />
+                        <Route element={<VistaImagenes />} path="/imagenes" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

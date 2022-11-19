@@ -11,6 +11,9 @@ export const Navbar = () => {
 				<Link to="/subir">
 					<span className="navbar-brand mb-0 h1">subir imagen a cloudinary</span>
 				</Link>
+				<Link to="/imagenes">
+					<span className="navbar-brand mb-0 h1">ver imagenes de Cloudinary</span>
+				</Link>
 				<div className="ml-auto">
 					<Link to="/demo">
 						<button className="btn btn-primary">Check the Context in action</button>
